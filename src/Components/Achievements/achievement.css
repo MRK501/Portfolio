@@ -1,0 +1,264 @@
+/* General Styles */
+.achievements {
+  padding: 50px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.achievements-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.achievements-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Achievement Card */
+.achievement-card {
+  background-color: rgba(180, 21, 255, 0.5); /* Transparent background with purple color */
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent; /* Initial transparent border for animation */
+  background-clip: padding-box; /* Makes the background visible inside the border */
+  animation: gradientBorder 5s infinite, radiusMove 5s infinite; /* Gradient and border-radius animation */
+}
+
+.achievement-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.achievement-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.achievement-card:hover .achievement-image {
+  transform: scale(1.1);
+}
+
+.achievement-info {
+  margin-top: 15px;
+  text-align: left;
+}
+
+.achievement-name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.achievement-description {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.achievement-date {
+  font-size: 1rem;
+  color: #fff;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .achievements-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for large tablets and small laptops */
+  }
+}
+
+@media (max-width: 1024px) {
+  .achievements-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller laptops */
+  }
+
+  .achievements-title {
+    font-size: 2.5rem; /* Smaller title size */
+  }
+
+  .achievement-card {
+    padding: 15px; /* Reduced padding */
+  }
+
+  .achievement-name {
+    font-size: 1.4rem;
+  }
+
+  .achievement-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .achievements-container {
+    grid-template-columns: 1fr; /* Single column for mobile */
+  }
+
+  .achievements-title {
+    font-size: 2rem; /* Even smaller title size */
+  }
+
+  .achievement-card {
+    padding: 10px; /* Further reduced padding for small screens */
+  }
+
+  .achievement-name {
+    font-size: 1.3rem;
+  }
+
+  .achievement-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .achievements-title {
+    font-size: 1.8rem; /* Title smaller for very small screens */
+  }
+
+  .achievement-card {
+    padding: 8px; /* Minimal padding for very small screens */
+  }
+
+  .achievement-name {
+    font-size: 1.2rem;
+  }
+
+  .achievement-description {
+    font-size: 0.8rem;
+  }
+
+  .achievement-image {
+    height: 150px; /* Make images smaller */
+  }
+}
+
+/* Adding a Gradient Overlay for Certificate Images */
+.achievement-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), transparent);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+/* Card Hover Effect */
+.achievement-card:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 0, 150, 0.2), rgba(0, 204, 255, 0.2));
+  border-radius: 15px;
+  z-index: 0;
+}
+
+/* Gradient Border Animation */
+@keyframes gradientBorder {
+  0% {
+    border-color: rgba(255, 0, 150, 0.8);
+  }
+  25% {
+    border-color: rgba(0, 204, 255, 0.8);
+  }
+  50% {
+    border-color: rgba(255, 255, 0, 0.8);
+  }
+  75% {
+    border-color: rgba(0, 255, 0, 0.8);
+  }
+  100% {
+    border-color: rgba(255, 0, 150, 0.8);
+  }
+}
+
+/* Border Radius Animation */
+@keyframes radiusMove {
+  0% {
+    border-radius: 15px;
+  }
+  50% {
+    border-radius: 30px;
+  }
+  100% {
+    border-radius: 15px;
+  }
+}
+
+/* Modal Background */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-height: 90%;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #000;
+  cursor: pointer;
+}
+
+.modal-fullscreen {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
