@@ -42,7 +42,7 @@ const About = () => {
     {
       name: 'HackerRank',
       logo: hackerrankLogo,
-      link: 'https://www.hackerrank.com/your-profilehttps://www.hackerrank.com/profile/manukhedekar501'
+      link: 'https://www.hackerrank.com/profile/manukhedekar501'
     },
     {
       name: 'GFG',

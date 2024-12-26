@@ -1,44 +1,49 @@
 import React, { useState } from 'react';
-import emailjs from 'emailjs-com';
 import './contact.css';
 import mail_icon from '../../assets/mail.svg';
 import location_icon from '../../assets/location.svg';
 import contact_icon from '../../assets/contact.svg';
 
 const Contact = () => {
+  // State to store form data
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
 
+  // State for status message
   const [statusMessage, setStatusMessage] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  // Handle form data change
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setStatusMessage("Sending....");
+    const form = new FormData(event.target);
+    form.append("access_key", "f86d6fa2-0471-4566-af3f-f17b7e7d5898");
 
-    emailjs
-      .send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
-        formData,
-        'YOUR_USER_ID' // Replace with your EmailJS user ID
-      )
-      .then(
-        (response) => {
-          console.log('SUCCESS!', response.status, response.text);
-          setStatusMessage('Message sent successfully!');
-          setFormData({ name: '', email: '', message: '' }); // Reset form
-        },
-        (error) => {
-          console.log('FAILED...', error);
-          setStatusMessage('Failed to send message. Please try again.');
-        }
-      );
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: form
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setStatusMessage("Form Submitted Successfully");
+      event.target.reset();
+    } else {
+      console.log("Error", data);
+      setStatusMessage(data.message);
+    }
   };
 
   return (
@@ -65,7 +70,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="contact-right">
+        <form onSubmit={onSubmit} className="contact-right">
           <label htmlFor="name">Your Name</label>
           <input
             type="text"
