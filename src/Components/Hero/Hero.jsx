@@ -1,7 +1,7 @@
 import React from 'react';
 import './Hero.css';
 import profile from '../../assets/profile.jpg';
-import resume from '../../assets/Manali Khedekar CV.pdf'; // Assuming your resume is in the assets folder
+import resume from '../../assets/_Manali Khedekar Final CV .pdf.pdf'; // Assuming your resume is in the assets folder
 
 const Hero = () => {
   const handleDownload = () => {
